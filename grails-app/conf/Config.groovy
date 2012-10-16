@@ -93,7 +93,8 @@ log4j = {
 			'org.springframework',
 			'org.hibernate',
 			'net.sf.ehcache.hibernate',
-			'grails.app.taglib.org.grails'
+			'grails.app.taglib.org.grails',
+			'org.grails.plugin.resource'
 }
 
 
