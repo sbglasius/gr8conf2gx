@@ -7,11 +7,11 @@ import groovy.xml.XmlUtil
 class SkanzWebsiteService {
 
 	def extractUsernamePassword(URL url) {
-
-			URL iframeUrl = findIframe(findRealUrl(url))
-			if(iframeUrl) {
-				return findNameAndEmail(iframeUrl)
-			}
+		URL iframeUrl = findIframe(findRealUrl(url))
+		log.debug("Found iframe: $iframeUrl")
+		if(iframeUrl) {
+			return findNameAndEmail(iframeUrl)
+		}
 		return []
 	}
 
@@ -21,12 +21,14 @@ class SkanzWebsiteService {
 		conn.followRedirects = false
 		conn.requestMethod = 'HEAD'
 		if(conn.responseCode in [301, 302]) {
+			log.debug("resolving redirect url: $url")
 			if(conn.headerFields.'Location') {
 				return findRealUrl(conn.headerFields.Location.first().toURL())
 			} else {
 				throw new RuntimeException('Failed to follow redirect')
 			}
 		}
+		log.debug("was a real url: $url")
 		return url
 	}
 
@@ -47,7 +49,7 @@ class SkanzWebsiteService {
 		def name = contact.div[1].div.div[1].h1.text()?.trim()
 		def email = contact.div[1].div.div[3].div[0].a.@href.text()
 		if(email) {
-			email = email -'mailto:'
+			email = email - 'mailto:'
 		}
 
 		return [name, email]
@@ -59,8 +61,8 @@ class SkanzWebsiteService {
 		new XmlSlurper(new org.ccil.cowan.tagsoup.Parser()).parseText(text)
 	}
 
-	private prettyPrint(node) {
-     XmlUtil.serialize(new StreamingMarkupBuilder().bind { mkp.yield node })
- }
 
+	private prettyPrint(node) {
+		XmlUtil.serialize(new StreamingMarkupBuilder().bind { mkp.yield node })
+	}
 }
