@@ -31,6 +31,7 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
 		mavenRepo "http://maven.springframework.org/milestone/"
+		mavenRepo "http://snapshots.repository.codehaus.org/"
 
     }
     dependencies {
@@ -38,6 +39,7 @@ grails.project.dependency.resolution = {
 		compile 'com.google.zxing:core:2.0'
 		compile 'com.google.zxing:javase:2.0'
 		compile('org.ccil.cowan.tagsoup:tagsoup:1.2.1')
+
 //		compile('xerces:xercesImpl:2.10.0')
 
         // runtime 'mysql:mysql-connector-java:5.1.18'
@@ -48,7 +50,7 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.7.1"
         runtime ":resources:1.1.6"
 		compile ":cloud-foundry:1.2.3"
-
+		compile ":spring-mobile:0.4"
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
         //runtime ":cached-resources:1.0"
