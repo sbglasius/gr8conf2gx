@@ -12,6 +12,7 @@ class CaptureQTRCodeController {
 
 	def analyze() {
 		def file = (CommonsMultipartFile) params.file
+		def view="index"
 		log.debug("Filename uploaded: ${file.originalFilename}")
 
 		def results = analyzeQRCodeService?.decodeMulti(file.inputStream)
@@ -20,7 +21,10 @@ class CaptureQTRCodeController {
 			(name, email) = skanzWebsiteService.extractUsernamePassword(results.first().text.toURL())
 			log.debug("Resolved $name, $email")
 		}
+		withMobileDevice {
+	        view = "index-mob"
+	  }
 
-		render(view: 'index', model: [qrcode: results ? results[0].text : '', name: name, email: email])
+		render(view: view, model: [qrcode: results ? results[0].text : '', name: name, email: email])
 	}
 }
