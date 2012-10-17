@@ -26,7 +26,7 @@ class PrizedrawEntryService {
 	}
 
 	@Listener(topic = 'afterInsert', namespace = "gorm")
-	def entrySaved(PrizedrawEntry entry) {
+	public void entrySaved(PrizedrawEntry entry) {
 		def data = [latest: new Date()]
 
 		log.debug("Notify client: $data")
@@ -34,7 +34,7 @@ class PrizedrawEntryService {
 	}
 
 	@Listener(topic = 'sendConfirmMail')
-	def sendConfirmMail(def data) {
+	public void sendConfirmMail(def data) {
 		def recpts = []
 		recpts.add(new MandrillRecipient(name:data.name, email:data.email))
 		def message = new MandrillMessage(
