@@ -9,7 +9,7 @@ if(typeof jQuery !== 'undefined') {
             console.debug("Button click!", $('input[name="file"]'));
             $('input[name="file"]').trigger('click')
         });
-        $('input[name="file"]').ajaxfileupload({
+        $('input[name="file"]','#ajaxForm').ajaxfileupload({
             action:$('input[name="upload"]').val(),
             responseType:'json',
             onComplete:function (response) {
@@ -32,6 +32,9 @@ if(typeof jQuery !== 'undefined') {
             onCancel:function () {
                 console.log('no file selected');
             }
+        });
+        $('input[name="file"]','#mobileForm').change(function() {
+            $('#mobileForm').submit();
         });
         console.debug("Ready!")
     })(jQuery);

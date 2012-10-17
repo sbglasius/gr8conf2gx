@@ -46,13 +46,23 @@ class SkanzWebsiteService {
 		def html = parseHtml(url)
 		def contact = html.'**'.find { it.@id == 'contact'}
 
-		def name = contact.div[1].div.div[1].h1.text()?.trim()
-		def email = contact.div[1].div.div[3].div[0].a.@href.text()
-		if(email) {
-			email = email - 'mailto:'
-		}
+		def name = findName(contact)
+		def email = findEmail(contact)
 
 		return [name, email]
+	}
+
+
+	private String findName(contact) {
+		contact.'**'.find { it.name() == 'h1'}.text()?.trim()
+	}
+
+
+	private String findEmail(contact) {
+		def email = contact.'**'.findAll { it.name() == 'a' }.find { it.@href.text().startsWith('mailto')}?.@href?.text()
+		if(email) {
+			return email - 'mailto:'
+		}
 	}
 
 

@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<g:render template="common" model="[mobile: true]"/>
+<g:render template="${template}"/>
 <g:render template="questions"/>
 </body>
 </html>

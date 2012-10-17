@@ -44,4 +44,31 @@ class CaptureQRCodeController {
 			render(template: 'common', model: [status: EntryStatus.QR_CODE_UNREADABLE])
 		}
 	}
+	def analyze() {
+		def file = (CommonsMultipartFile) params.file
+		if(!params.file) {
+			return [template:  'common']
+		}
+		log.debug("Filename uploaded: ${file.originalFilename}")
+
+		def results = analyzeQRCodeService?.decodeMulti(file.inputStream)
+		if(results) {
+			String url = results.first().text
+			if(!prizedrawEntryService.isDoubleEntry(url)) {
+				def (name, email) = skanzWebsiteService.extractUsernamePassword(url.toURL())
+				if(name && email) {
+					log.debug("Resolved $name, $email")
+					prizedrawEntryService.saveEntry(url, name, email)
+					return [template: 'found', name: name, email: email]
+				} else {
+					return [template: 'common', status: EntryStatus.NAME_OR_EMAIL_MISSING, mobile: true]
+				}
+			} else {
+				log.debug("This is a double entry - mobile")
+				return[template: 'common' ,status: EntryStatus.DOUBLE_ENTRY, mobile: true]
+			}
+		} else {
+			return [template: 'common',status: EntryStatus.QR_CODE_UNREADABLE, mobile: true]
+		}
+	}
 }
