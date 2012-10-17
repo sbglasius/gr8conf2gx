@@ -25,11 +25,10 @@ class CaptureQRCodeController {
 		log.debug("Filename uploaded: ${file.originalFilename}")
 
 		def results = analyzeQRCodeService?.decodeMulti(file.inputStream)
-		def name = null, email = null
 		if(results) {
 			String url = results.first().text
 			if(!prizedrawEntryService.isDoubleEntry(url)) {
-				(name, email) = skanzWebsiteService.extractUsernamePassword(url.toURL())
+				def (name, email) = skanzWebsiteService.extractUsernamePassword(url.toURL())
 				if(name && email) {
 					log.debug("Resolved $name, $email")
 					prizedrawEntryService.saveEntry(url, name, email)
