@@ -1,59 +1,100 @@
 input, select, textarea {
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: QuicksandBold, Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	line-height: 1.1;
+    line-height: 1.1;
+    font-family: QuicksandBold, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-decoration: none;
+    text-shadow: #ddd 1px 1px 0px, #999 0px 0px 10px, #999 0px 0px 10px;
+    border-bottom: 0px;
 }
 
-/* BASE LAYOUT */
+h1#header {
+    text-align: center;
+}
 
 html {
-	/* change the box model to exclude the padding from the calculation of 100% height (IE8+) */
-	-webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;
+    font-family: QuicksandBold, Helvetica, Arial, sans-serif;
+/* change the box model to exclude the padding from the calculation of 100% height (IE8+) */
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html.no-cssgradients {
-	background-color: #aaa;
+    background-color: #aaa;
 }
 
 .ie6 html {
-	height: 100%;
+    height: 100%;
 }
 
 html * {
-	margin: 0;
+    margin: 0;
 }
 
 body {
     background: #0096D6 url(../images/BG_TopOfPage.png) top center no-repeat;
-   	color:#333;
-   	font: 12px/18px Arial, Helvetica, sans-serif;
-	height: 100%;
-	overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
-	   -moz-box-shadow: 0 0 0.3em #255b17;
-	-webkit-box-shadow: 0 0 0.3em #255b17;
-	        box-shadow: 0 0 0.3em #255b17;
+    color: #333;
+    height: 100%;
+    overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
+    -moz-box-shadow: 0 0 0.3em #255b17;
+    -webkit-box-shadow: 0 0 0.3em #255b17;
+    box-shadow: 0 0 0.3em #255b17;
+    text-shadow: #ddd 1px 1px 0px, #999 0px 0px 10px, #999 0px 0px 10px;
+}
+
+#content {
+    background-color: #f5f5f5;
+    padding: 10px;
+    #gr8conf {
+        text-align: center;
+        padding: 20px;
+    }
 }
 
 .view-wrapper {
     width: 100%;
     height: 100%;
     #wrapper {
-    	margin:0 auto;
-    	width:1024px;
-    	background:none;
+        margin: 0 auto;
+        width: 1024px;
+        background: none;
         #hdr {
-        	background:url(../images/springone2gx.png) no-repeat center 2px;
-        	height:198px;
+            background: url(../images/springone2gx.png) no-repeat center 2px;
+            height: 198px;
         }
-        #content {
-            background-color: #f5f5f5;
-            padding: 10px;
+    }
+    #content {
+        p {
+            font-size: 14pt;
+            padding-top: 8pt;
+            padding-left: 30px;
+            padding-right: 30px;
+            text-align: justify;
         }
-
+        p.privacy {
+            font-size: 10pt;
+        }
+        #camera {
+            text-align: center;
+            padding-top: 20px;
+            text-shadow: #ddd 1px 1px 0px, #999 0px 0px 10px, #999 0px 0px 10px;
+            button {
+                -moz-box-shadow: 0 0 0.3em #255b17;
+                -webkit-box-shadow: 0 0 0.3em #255b17;
+                box-shadow: 0 0 0.5em #255b17;
+                border-radius: 15px;
+                margin: 5px;
+                padding: 20px 30px;
+                img {
+                    width: 80px;
+                }
+            }
+        }
     }
 }
 
@@ -61,16 +102,40 @@ body {
     width: 100%;
     height: 100%;
     #wrapper {
-    	margin:0 auto;
-    	background:none;
+        margin: 0 auto;
+        background: none;
         #hdr {
-        	background:url(../images/mobile/springone2gx.png) no-repeat center 2px;
-        	height:198px;
+            background: url(../images/springone2gx.png) no-repeat center 2px;
+            height: 198px;
         }
         #content {
-            background-color: #f5f5f5;
-            padding: 10px;
+            p {
+                font-size: 12pt;
+                padding-top: 8pt;
+                padding-left: 30px;
+                padding-right: 30px;
+                text-align: justify;
+            }
+            p.privacy {
+                font-size: 8pt;
+            }
+            #camera {
+                text-align: center;
+                padding-top: 10px;
+                text-shadow: #ddd 1px 1px 0px, #999 0px 0px 10px, #999 0px 0px 10px;
+                button {
+                    -moz-box-shadow: 0 0 0.3em #255b17;
+                    -webkit-box-shadow: 0 0 0.3em #255b17;
+                    box-shadow: 0 0 0.5em #255b17;
+                    border-radius: 15px;
+                    margin: 5px;
+                    padding: 20px 30px;
+                    img {
+                        width: 80px;
+                    }
+                }
+            }
         }
-
     }
 }
+

@@ -5,7 +5,7 @@
 	<title>Mobilepage</title></head>
 
   <body>
-	Welcome to the mobilepage
+	<g:render template="before"/>
 	<g:if test="${qrcode}">
 		<p>URL: ${qrcode}</p>
 		<p>Name: ${name}</p>

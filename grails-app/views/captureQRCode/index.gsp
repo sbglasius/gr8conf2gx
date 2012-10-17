@@ -5,6 +5,7 @@
 	<title>Springone2GX - GR8Conf </title></head>
 
   <body>
+	<g:render template="before"/>
 	<g:render template="form"/>
 	<g:if test="${qrcode}">
 		<p>URL: ${qrcode}</p>
