@@ -1,4 +1,2 @@
-<g:uploadForm action="analyze" style="display: none;" >
-	<input name="file" type="file" accept="image/*;capture=camera" >
-	<g:submitButton name="Submit"/>
-</g:uploadForm>
+<input type="hidden" name="upload" value="${createLink(action: 'analyzeAjax', absolute: true)}"/>
+<input name="file" type="file" accept="image/*;capture=camera" style="display: none;">

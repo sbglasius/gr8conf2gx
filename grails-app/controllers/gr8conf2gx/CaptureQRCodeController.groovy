@@ -20,9 +20,8 @@ class CaptureQRCodeController {
 	}
 
 
-	def analyze() {
+	def analyzeAjax() {
 		def file = (CommonsMultipartFile) params.file
-		def view = "index"
 		log.debug("Filename uploaded: ${file.originalFilename}")
 
 		def results = analyzeQRCodeService?.decodeMulti(file.inputStream)
@@ -30,14 +29,12 @@ class CaptureQRCodeController {
 		if(results) {
 			(name, email) = skanzWebsiteService.extractUsernamePassword(results.first().text.toURL())
 			log.debug("Resolved $name, $email")
-		}
-		withMobileDevice {
-			def device ->
-			println device //The toString() shows a lot of information about the device
-			log.debug("Render for mobile")
-			view = "index-mob"
+			render( template: 'found', model: [name: name, email: email]  )
+		} else {
+			render( template: 'common', model: [notFound: true])
+
 		}
 
-		render(view: view, model: [qrcode: results ? results[0].text : '', name: name, email: email])
+
 	}
 }
