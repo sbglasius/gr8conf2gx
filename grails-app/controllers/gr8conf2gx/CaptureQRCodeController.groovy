@@ -33,6 +33,7 @@ class CaptureQRCodeController {
 				(name, email) = skanzWebsiteService.extractUsernamePassword(url.toURL())
 				if(name && email) {
 					log.debug("Resolved $name, $email")
+					prizedrawEntryService.saveEntry(url, name, email)
 					render(template: 'found', model: [name: name, email: email])
 				} else {
 					render(template: 'common', model: [status: EntryStatus.NAME_OR_EMAIL_MISSING])
