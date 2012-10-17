@@ -19,8 +19,8 @@
 </head>
 
 <body>
-<div class="view-wrapper">
-	<div id="mobile-wrapper">
+<div class="mobile">
+	<div id="wrapper">
 		<div id="hdr"></div>
 
 		<div id="content">

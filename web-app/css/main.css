@@ -59,7 +59,7 @@ body {
 	background:none;
 }
 
-#mobile-wrapper {
+#wrapper.mobile {
 	margin:0 auto;
 	width:auto;
 	background:none;
@@ -71,7 +71,7 @@ body {
 	height:198px;
 }
 
-#mobile-wrapper #hdr {
+#wrapper.mobile #hdr {
 	background:url(../images/mobile/springone2gx.png) no-repeat center 2px;
 	height:198px;
 }

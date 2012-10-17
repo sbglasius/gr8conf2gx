@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-	<meta name="mobile" content="main" />
+	<meta name="layout" content="mobile" />
 	<title>Mobilepage</title></head>
 
   <body>

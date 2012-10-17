@@ -51,6 +51,8 @@ grails.project.dependency.resolution = {
         runtime ":resources:1.1.6"
 		compile ":cloud-foundry:1.2.3"
 		compile ":spring-mobile:0.4"
+		compile ":lesscss-resources:1.3.0.3"
+
 		//compile ":twitter-bootstrap:2.1.1"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
@@ -60,7 +62,7 @@ grails.project.dependency.resolution = {
 
         build ":tomcat:$grailsVersion"
 
-        runtime ":database-migration:1.1"
+        //runtime ":database-migration:1.1"
         
      //   compile ':cache:1.0.0.RC1'
     }
