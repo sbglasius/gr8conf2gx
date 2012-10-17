@@ -59,8 +59,20 @@ body {
 	background:none;
 }
 
-#hdr {
+#mobile-wrapper {
+	margin:0 auto;
+	width:auto;
+	background:none;
+}
+
+
+#wrapper #hdr {
 	background:url(../images/springone2gx.png) no-repeat center 2px;
+	height:198px;
+}
+
+#mobile-wrapper #hdr {
+	background:url(../images/mobile/springone2gx.png) no-repeat center 2px;
 	height:198px;
 }
 

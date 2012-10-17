@@ -2,17 +2,14 @@
 <html>
 <head>
 	<meta name="layout" content="main" />
-	<title>Simple GSP page</title></head>
+	<title>Springone2GX - GR8Conf </title></head>
 
   <body>
+	<g:render template="form"/>
 	<g:if test="${qrcode}">
 		<p>URL: ${qrcode}</p>
 		<p>Name: ${name}</p>
 		<p>Email: ${email}</p>
 	</g:if>
-	<g:uploadForm action="analyze" >
-		<input name="file" type="file" accept="image/*;capture=camera">
-		<g:submitButton name="Submit"/>
-	</g:uploadForm>
   </body>
 </html>

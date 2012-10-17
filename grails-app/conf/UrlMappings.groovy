@@ -7,7 +7,7 @@ class UrlMappings {
 			}
 		}
 
-		"/"(view:"/index")
+		"/"(controller: 'captureQRCode', action:"index")
 		"500"(view:'/error')
 	}
 }

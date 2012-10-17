@@ -98,3 +98,8 @@ log4j = {
 }
 
 
+
+springMobile {
+	deviceResolver="wurfl"
+}
+
