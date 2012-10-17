@@ -6,7 +6,12 @@
 //                             "classpath:${appName}-config.groovy",
 //                             "file:${userHome}/.grails/${appName}-config.properties",
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
-grails.config.locations = [ "file:${userHome}/.grails/${appName}-config.groovy"]
+grails.config.locations = [
+		"file:${userHome}/.grails/${appName}-config.groovy",
+		"classpath:${appName}-config.groovy",
+		"file:${userHome}/.grails/${appName}-mandrill-config.groovy",
+		"classpath:${appName}-mandrill-config.groovy"
+]
 
 // if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
@@ -83,8 +88,8 @@ log4j = {
 	debug 'grails.app'
 
 	info 'org.springframework.integration'
-	 info 'org.grails.plugin.platform.events'
-	 info 'org.springframework.amqp'
+	info 'org.grails.plugin.platform.events'
+	info 'org.springframework.amqp'
 
 	error 'org.codehaus.groovy.grails.web.servlet',        // controllers
 			'org.codehaus.groovy.grails.web.pages',          // GSP
@@ -105,6 +110,9 @@ plugin.platformCore.navigation.disable = true
 plugin.platformCore.security.disable = true
 
 springMobile {
-	deviceResolver="wurfl"
+	deviceResolver = "wurfl"
 }
 
+mandrill {
+	//apiKey = "Configured externally"
+}

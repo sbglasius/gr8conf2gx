@@ -5,7 +5,10 @@ grails.project.test.reports.dir = "target/test-reports"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
-
+grails.war.resources = { stagingDir, args ->
+    copy(file: "${userHome}/.grails/${appName}-mandrill-config.groovy",
+         toDir: "${stagingDir}/WEB-INF/classes")
+}
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -58,7 +61,7 @@ grails.project.dependency.resolution = {
 
 		runtime ":events-si:1.0.M3"
 		compile ":events-push:1.0.M3"
-
+		compile ":mandrill:0.1"
 		//compile ":twitter-bootstrap:2.1.1"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
@@ -72,4 +75,5 @@ grails.project.dependency.resolution = {
         
      //   compile ':cache:1.0.0.RC1'
     }
+
 }

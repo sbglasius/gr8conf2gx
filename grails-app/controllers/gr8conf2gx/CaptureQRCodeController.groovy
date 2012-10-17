@@ -6,6 +6,7 @@ class CaptureQRCodeController {
 	def analyzeQRCodeService
 	def skanzWebsiteService
 	def prizedrawEntryService
+	def mandrillService
 
 
 	def index() {
