@@ -1,9 +1,8 @@
 package gr8conf2gx
 
-import grails.events.Listener
 import org.grails.mandrill.MandrillMessage
 import org.grails.mandrill.MandrillRecipient
-import org.grails.plugin.platform.events.publisher.EventsPublisher
+//import org.grails.plugin.platform.events.publisher.EventsPublisher
 
 class PrizedrawEntryService {
 
@@ -21,11 +20,12 @@ class PrizedrawEntryService {
 		def entry = new PrizedrawEntry(url: url, name: name, email: email).save(failOnError: true, flush: true)
 		log.debug("Save entry: $entry")
 		def sendMailData = [name: entry.name, email: entry.email]
-		event('sendConfirmMail', sendMailData,[(EventsPublisher.FORK): true])
+		sendConfirmMail(sendMailData)
+		//event('sendConfirmMail', sendMailData,[(EventsPublisher.FORK): true])
 		return entry
 	}
 
-	@Listener(topic = 'afterInsert', namespace = "gorm")
+//	@Listener(topic = 'afterInsert', namespace = "gorm")
 	public void entrySaved(PrizedrawEntry entry) {
 		def data = [latest: new Date()]
 
@@ -33,7 +33,7 @@ class PrizedrawEntryService {
 		event('notifyClient', data,[(EventsPublisher.FORK): true])
 	}
 
-	@Listener(topic = 'sendConfirmMail')
+//	@Listener(topic = 'sendConfirmMail')
 	public void sendConfirmMail(def data) {
 		def recpts = []
 		recpts.add(new MandrillRecipient(name:data.name, email:data.email))

@@ -53,8 +53,8 @@ grails.project.dependency.resolution = {
 		compile ":spring-mobile:0.4"
 		compile ":lesscss-resources:1.3.0.3"
 
-		runtime ":events-si:1.0.M3"
-		compile ":events-push:1.0.M3"
+//		runtime ":events-si:1.0.M3"
+//		compile ":events-push:1.0.M3"
 		compile ":mandrill:0.1"
 		//compile ":twitter-bootstrap:2.1.1"
 

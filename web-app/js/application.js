@@ -6,14 +6,15 @@ if(typeof jQuery !== 'undefined') {
                     $(this).fadeOut();
                 });
         $('#cameraButton').click(function () {
-            $('input[name="file"]').click()
+            console.debug("Button click!", $('input[name="file"]'));
+            $('input[name="file"]').trigger('click')
         });
         $('input[name="file"]').ajaxfileupload({
             action:$('input[name="upload"]').val(),
             responseType:'json',
             onComplete:function (response) {
-                console.log('custom handler for file:', response, $('#maincontent'));
                 $('#maincontent').replaceWith(response);
+                $('#spin-overlay').remove()
             },
             onStart:function () {
                 var body = $('body')
@@ -32,6 +33,6 @@ if(typeof jQuery !== 'undefined') {
                 console.log('no file selected');
             }
         });
-
+        console.debug("Ready!")
     })(jQuery);
 }
