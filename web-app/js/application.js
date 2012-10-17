@@ -9,16 +9,20 @@ if(typeof jQuery !== 'undefined') {
             console.debug("Button click!", $('input[name="file"]'));
             $('input[name="file"]').trigger('click')
         });
+        var overlay;
         $('input[name="file"]','#ajaxForm').ajaxfileupload({
             action:$('input[name="upload"]').val(),
             responseType:'json',
             onComplete:function (response) {
+                if(overlay) {
+                    overlay.remove();
+                    overlay = undefined;
+                }
                 $('#maincontent').replaceWith(response);
-                $('#spin-overlay').remove()
             },
             onStart:function () {
                 var body = $('body')
-                var overlay = $('<div/>').attr('id','spin-overlay').appendTo(body);
+                overlay = $('<div/>').attr('id','spin-overlay').appendTo(body);
                 overlay.css({
                     position: 'absolute',
                     top: 0,
