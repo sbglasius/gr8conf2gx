@@ -1,4 +1,4 @@
-grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
+grails.servlet.version = "3.0" // Change depending on target container compliance (2.5 or 3.0)
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
@@ -32,13 +32,16 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.jboss.com/maven2/"
 		mavenRepo "http://maven.springframework.org/milestone/"
 		mavenRepo "http://snapshots.repository.codehaus.org/"
+		mavenRepo "https://oss.sonatype.org/content/repositories/releases/"
+
 
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 		compile 'com.google.zxing:core:2.0'
 		compile 'com.google.zxing:javase:2.0'
-		compile('org.ccil.cowan.tagsoup:tagsoup:1.2.1')
+		compile 'org.ccil.cowan.tagsoup:tagsoup:1.2.1'
+		runtime 'org.springframework.integration:spring-integration-amqp:2.1.3.RELEASE'
 
 //		compile('xerces:xercesImpl:2.10.0')
 
@@ -52,6 +55,9 @@ grails.project.dependency.resolution = {
 		compile ":cloud-foundry:1.2.3"
 		compile ":spring-mobile:0.4"
 		compile ":lesscss-resources:1.3.0.3"
+
+		runtime ":events-si:1.0.M3"
+		compile ":events-push:1.0.M3"
 
 		//compile ":twitter-bootstrap:2.1.1"
 

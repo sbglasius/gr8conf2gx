@@ -82,6 +82,10 @@ log4j = {
 	}
 	debug 'grails.app'
 
+	info 'org.springframework.integration'
+	 info 'org.grails.plugin.platform.events'
+	 info 'org.springframework.amqp'
+
 	error 'org.codehaus.groovy.grails.web.servlet',        // controllers
 			'org.codehaus.groovy.grails.web.pages',          // GSP
 			'org.codehaus.groovy.grails.web.sitemesh',       // layouts
@@ -97,7 +101,8 @@ log4j = {
 			'org.grails.plugin.resource'
 }
 
-
+plugin.platformCore.navigation.disable = true
+plugin.platformCore.security.disable = true
 
 springMobile {
 	deviceResolver="wurfl"
