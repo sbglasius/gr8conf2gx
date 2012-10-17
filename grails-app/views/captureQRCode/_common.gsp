@@ -1,3 +1,4 @@
+<%@ page import="gr8conf2gx.EntryStatus" %>
 <div id="maincontent">
 	<div id="header">
 		<h1>Welcome to the</h1>
@@ -16,10 +17,17 @@
 	<p>To enter, it's required that you have a Springone2GX badge, and that you have created a profile on<g2:skanz/> with your name and email address.</p>
 
 	<div id="camera">
-		<g:if test="${notFound}">
+		<g:if test="${status in EntryStatus.ERROR_CODES}">
 			<h2>Oops...</h2>
-
+			<g:if test="${status == EntryStatus.QR_CODE_UNREADABLE}">
 			<div>we were not able to decode your QR code. Please try again...</div>
+			</g:if>
+			<g:if test="${status == EntryStatus.DOUBLE_ENTRY}">
+			<div>You can not enter the prizedraw twice.</div>
+			</g:if>
+			<g:if test="${status == EntryStatus.NAME_OR_EMAIL_MISSING}">
+			<div>we can not find your profile data on<g2:skanz/>. Please update your profile...</div>
+			</g:if>
 		</g:if>
 		<button id="cameraButton">
 			<r:img uri="/images/camera.png"/>

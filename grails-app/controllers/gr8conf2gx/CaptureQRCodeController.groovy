@@ -5,6 +5,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile
 class CaptureQRCodeController {
 	def analyzeQRCodeService
 	def skanzWebsiteService
+	def prizedrawEntryService
 
 
 	def index() {
@@ -27,14 +28,21 @@ class CaptureQRCodeController {
 		def results = analyzeQRCodeService?.decodeMulti(file.inputStream)
 		def name = null, email = null
 		if(results) {
-			(name, email) = skanzWebsiteService.extractUsernamePassword(results.first().text.toURL())
-			log.debug("Resolved $name, $email")
-			render( template: 'found', model: [name: name, email: email]  )
+			String url = results.first().text
+			if(!prizedrawEntryService.isDoubleEntry(url)) {
+				(name, email) = skanzWebsiteService.extractUsernamePassword(url.toURL())
+				if(name && email) {
+					log.debug("Resolved $name, $email")
+					render(template: 'found', model: [name: name, email: email])
+				} else {
+					render(template: 'common', model: [status: EntryStatus.NAME_OR_EMAIL_MISSING])
+				}
+			} else {
+				log.debug("This is a double entry")
+				render(template: 'common', model: [status: EntryStatus.DOUBLE_ENTRY])
+			}
 		} else {
-			render( template: 'common', model: [notFound: true])
-
+			render(template: 'common', model: [status: EntryStatus.QR_CODE_UNREADABLE])
 		}
-
-
 	}
 }
